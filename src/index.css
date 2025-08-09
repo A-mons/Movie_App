@@ -6,6 +6,10 @@
 @theme {
     --color-primary: #030014;
 
+    --color-light-100: #cecefb;
+
+    --color-light-200: #a8b5db;
+
     --background-image-hero-pattern: url("/hero-bg.png");
 
     --breakpoint-xs: 480px;
@@ -46,6 +50,22 @@
 
     .wrapper {
         @apply px-5 py-12 xs:p-10 max-w-7xl mx-auto flex flex-col relative z-10;
+    }
+
+    .search {
+        @apply w-full bg-light-100/5 px-4 py-3 rounded-lg mt-10 max-w-3xl mx-auto;
+
+        & div {
+            @apply relative flex items-center;
+        }
+
+        & img {
+            @apply absolute left-2 h-5 w-5;
+        }
+
+        & input {
+            @apply w-full bg-transparent py-2 sm:pr-10 pl-10 text-base text-gray-200 placeholder-light-200 outline-hidden;
+        }
     }
 }
 
