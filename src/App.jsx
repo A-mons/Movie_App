@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Search from "./components/Search.jsx";
 import Spinner from "./components/Spinner.jsx";
+import Card from "./components/Card.jsx";
 
 const API_BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
 
@@ -72,7 +73,8 @@ const App = () => {
                             : errorMessage ? (<p className="error-message">{errorMessage}</p>)
                                 : <ul>
                                     {movieList.map((movie) => (
-                                    <li key={movie.id} className="text-white" >{movie.title}</li>
+                                    <Card key={movie.id} movie={movie}/>
+
                                     ))}
                                    </ul>
                                 }
