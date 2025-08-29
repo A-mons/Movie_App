@@ -3,6 +3,7 @@ import Search from "./components/Search.jsx";
 import Spinner from "./components/Spinner.jsx";
 import Card from "./components/Card.jsx";
 import { useDebounce } from 'react-use'
+import {updateSearchCount} from "./appwrite.js";
 
 const API_BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
 
@@ -48,7 +49,8 @@ const App = () => {
                 return;
             }
             setMovieList(data.results || []);
-
+            if (query && data.results.length > 0) {}
+            await updateSearchCount(query,data.results[0]);
         } catch (error) {
             console.error(`Error fetching movies: ${error}`);
             setErrorMessage('Failed to fetch movies. Please try again.');
