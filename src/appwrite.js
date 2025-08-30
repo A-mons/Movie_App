@@ -47,3 +47,17 @@ export const updateSearchCount = async (searchTerm, movie)=> {
     }
 
 }
+
+export const getTopSearches = async () => {
+    try {
+        const result = await tablesDB.listRows({
+            databaseId: DATABASE_ID,
+            tableId: TABLE_ID,
+            queries: [Query.orderDesc('count'), Query.limit(5)] // optional
+        });
+        return result.rows;
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
