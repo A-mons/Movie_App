@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import Search from "./components/Search.jsx";
-import Spinner from "./components/Spinner.jsx";
-import Card from "./components/Card.jsx";
 import { useDebounce } from 'react-use'
 import {updateSearchCount, getTopSearches} from "./appwrite.js";
+import AllMovies from "./components/AllMovies.jsx";
+import Header from "./components/Header.jsx";
+import TrendingMovies from "./components/TrendingMovies.jsx";
+import MovieDetails from "./components/MovieDetails.jsx";
 
 const API_BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
 
@@ -25,6 +26,7 @@ const App = () => {
     const [movieList, setMovieList] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [trending, setTrending] = useState([]);
+    const [selectedMovie, setSelectedMovie] = useState(null);
 
 
     useDebounce(() => setDebouncedSearchTerm(searchTerm), 500, [searchTerm])
@@ -78,44 +80,40 @@ const App = () => {
         fetchTopSearches();
     },[])
 
+
+    const handleMovieSelect = (movie) => {
+        setSelectedMovie(movie);
+    }
+
+    const handleBackToList = () => {
+        setSelectedMovie(null);
+    }
+
+
     return (
         <main>
             <div className="pattern" />
                 <div className="wrapper">
-                    <header >
-                        <img src= "./hero.png" alt= "hero" />
-                        <h1>Find <span className="text-gradient">Movies</span> You'll Enjoy </h1>
-                        <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-                    </header>
+                    <Header
+                        searchTerm = {searchTerm}
+                        setSearchTerm = {setSearchTerm}
+                    />
+                    < TrendingMovies trending = {trending}/>
 
-                    {trending.length > 0 && (
-                    <section className="trending">
-                        <h2 >Trending Movies</h2>
-                            <ul>
-                                {trending.map((movie, index) => (
-                                    <li key={movie.$id}>
-                                        <p>{index+1}</p>
-                                        {console.log(movie.count)}
-                                        <img src={movie.poster_url} alt={movie.title}  />
-                                    </li>
-                                ))}
-                            </ul>
-                    </section>
-                    )}
-
-                    <section className="all-movies">
-                        <h2 >All Movies</h2>
-
-                        { isLoading ? (<Spinner/>)
-                            : errorMessage ? (<p className="error-message">{errorMessage}</p>)
-                                : <ul>
-                                    {movieList.map((movie) => (
-                                    <Card key={movie.id} movie={movie}/>
-
-                                    ))}
-                                   </ul>
-                                }
-                    </section>
+                    {selectedMovie ? (
+                            <MovieDetails
+                                movie={selectedMovie}
+                                onBackClick={handleBackToList}
+                            />
+                        ):(
+                            <AllMovies
+                             isLoading= {isLoading}
+                             errorMessage= {errorMessage}
+                             movieList= {movieList}
+                             onMovieSelect = {handleMovieSelect}
+                            />
+                        )
+                    }
 
                 </div>
 

@@ -53,7 +53,7 @@ export const getTopSearches = async () => {
         const result = await tablesDB.listRows({
             databaseId: DATABASE_ID,
             tableId: TABLE_ID,
-            queries: [Query.orderDesc('count'), Query.limit(5)] // optional
+            queries: [Query.orderDesc('count'), Query.limit(5)]
         });
         return result.rows;
     } catch (error) {
