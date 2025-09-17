@@ -105,7 +105,7 @@
     }
 
     .movie-card {
-        @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10;
+        @apply bg-dark-100 p-5 rounded-2xl shadow-inner shadow-light-100/10 cursor-pointer;
 
         & img {
             @apply rounded-lg h-auto w-full;
@@ -140,8 +140,73 @@
         }
 
         & .content .year {
-            @apply text-gray-100 font-medium text-base;
+            @apply
+            text-gray-100
+            font-medium
+            text-base;
         }
+    }
+
+    .movie-details-section {
+        @apply  mt-8;
+    }
+
+    .movie-details-content {
+        @apply
+        bg-dark-100
+        rounded-2xl
+        p-8
+        my-4
+        text-white;
+    }
+
+    .movie-details-layout {
+        @apply
+        flex
+        flex-col
+        gap-8;
+    }
+
+    .nav-button {
+        @apply
+        inline-flex
+        items-center
+        text-light-100
+        text-sm
+        font-medium
+        bg-dark-100
+        px-4 py-2
+        rounded-lg
+        border border-light-100/20
+        hover:bg-light-100/10
+        transition-all duration-300
+        cursor-pointer;
+    }
+
+
+    .nav-button__icon {
+        @apply w-4 h-4 mr-2;
+    }
+
+    .nav-button--secondary {
+        @apply bg-dark-100 text-light-100 border border-light-100/20
+        hover:bg-light-100/10 hover:border-light-100/30
+        hover:-translate-y-0.5 transition-all duration-200;
+    }
+
+    .movie-poster {
+        @apply
+        w-full /* → Prend toute la largeur disponible */
+        max-w-md /* → Mais maximum 28rem (448px) de large */
+        rounded-xl /* → Coins arrondis de 0.75rem (12px) */
+        mx-auto; /* → Centre l'élément horizontalement */
+    }
+
+    .movie-title {
+        @apply
+        text-3xl /* → Très gros texte (1.875rem = 30px) */
+        font-bold /* → Texte en gras (épaisseur 700) */
+        mb-4; /* → Marge en bas de 1rem (16px) */
     }
 
 }
