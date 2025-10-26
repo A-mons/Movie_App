@@ -88,7 +88,9 @@ const App = () => {
     const handleBackToList = () => {
         setSelectedMovie(null);
     }
-
+    const handleResetSearch = () => {
+        setSearchTerm('');
+    };
 
     return (
         <main>
@@ -111,6 +113,8 @@ const App = () => {
                              errorMessage= {errorMessage}
                              movieList= {movieList}
                              onMovieSelect = {handleMovieSelect}
+                             searchTerm={searchTerm}
+                             onResetSearch ={handleResetSearch}
                             />
                         )
                     }
