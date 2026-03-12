@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { HiHome, HiArrowLeft } from 'react-icons/hi';
+import { HiArrowLeft } from 'react-icons/hi';
 
 const API_BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
 
@@ -98,7 +97,7 @@ const MovieDetails = ({ movie, onBackClick } ) => {
                         </div>
                         <div className="movie-info-grid">
                             <div className="info-item">
-                                <h3>Statut</h3>
+                                <h3>Status</h3>
                                 <p>{displayMovie.status || 'N/A'}</p>
                             </div>
                             <div className="info-item">
@@ -106,11 +105,11 @@ const MovieDetails = ({ movie, onBackClick } ) => {
                                 <p>{displayMovie.budget ? `$${displayMovie.budget.toLocaleString()}` : 'N/A'}</p>
                             </div>
                             <div className="info-item">
-                                <h3>Recettes</h3>
+                                <h3>Revenue</h3>
                                 <p>{displayMovie.revenue ? `$${displayMovie.revenue.toLocaleString()}` : 'N/A'}</p>
                             </div>
                             <div className="info-item">
-                                <h3>Popularité</h3>
+                                <h3>Popularity</h3>
                                 <p>{displayMovie.popularity ? displayMovie.popularity.toFixed(0) : 'N/A'}</p>
                             </div>
                         </div>
@@ -130,7 +129,7 @@ const MovieDetails = ({ movie, onBackClick } ) => {
 
                         {displayMovie.production_companies && displayMovie.production_companies.length > 0 && (
                             <div className="companies-section">
-                                <h3>Studios de Production</h3>
+                                <h3>Production Studios</h3>
                                 <div className="badges-container">
                                     {displayMovie.production_companies.map(company => (
                                         <span key={company.id} className="company-badge">
